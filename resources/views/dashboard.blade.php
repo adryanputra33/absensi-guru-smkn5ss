@@ -1,17 +1,34 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.apptest')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+@section('title', 'Dashboard Admin')
+
+@section('content')
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4>Halaman Utama</h4>
+        <div>
+            <span>{{ \Carbon\Carbon::now()->translatedFormat('H:i') }} WIB | {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</span>
+            <a href="#" class="btn btn-outline-danger btn-sm">Logout</a>
         </div>
     </div>
-</x-app-layout>
+    <p>Selamat Datang, saat ini anda login sebagai Administrator. Anda memiliki akses penuh terhadap sistem.</p>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{{ route('guru') }}" class="dashboard-card bg-success">
+                <i class="bi bi-people"></i><br>
+                Data Guru
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="dashboard-card bg-warning">
+                <i class="bi bi-clipboard"></i><br>
+                Laporan Absensi
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="#" class="dashboard-card bg-primary">
+                <i class="bi bi-gear"></i><br>
+                Setting Profile
+            </a>
+        </div>
+    </div>
+@endsection
