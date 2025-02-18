@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apptest')
 
 @section('title', 'Data Guru')
 
@@ -14,6 +14,7 @@
             <th>No</th>
             <th>Nama</th>
             <th>Email</th>
+            <th>Status</th>
             <th>Aksi</th>
         </tr>
         </thead>
@@ -22,14 +23,28 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $item->nama }}</td>
-                <td>{{ $item->email }}</td>
+                <td>{{ $item->nip }}</td>
+
+                <!-- Form hanya untuk status -->
                 <td>
-                    <a href="{{ route('guru.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('guru.destroy', $item->id) }}" method="POST" class="d-inline">
+                    <form action="{{ route('guru.update', $item->id) }}" method="POST">
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                        @method('PUT') <!-- Menentukan method PUT untuk pembaruan -->
+                        <input type="hidden" name="status" value="0"> <!-- Set status 0 secara default -->
+
+                        <!-- Checkbox untuk status, jika dicentang, status menjadi 1 -->
+                        <input type="checkbox" name="status" value="1" {{ $item->status == 1 ? 'checked' : '' }} onchange="this.form.submit()">
                     </form>
+                </td>
+
+                <td>
+                    <a href="{{ route('guru.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> <!-- Icon Edit -->
+                    </a>
+
+                    <a href="" class="btn btn-primary btn-sm">
+                        <i class="fas fa-user"></i> <!-- Icon User -->
+                    </a>
                 </td>
             </tr>
         @endforeach

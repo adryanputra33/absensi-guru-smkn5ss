@@ -13,7 +13,7 @@
     <p>Selamat Datang, saat ini anda login sebagai Administrator. Anda memiliki akses penuh terhadap sistem.</p>
     <div class="row">
         <div class="col-md-4">
-            <a href="{{ route('guru') }}" class="dashboard-card bg-success">
+            <a href="{{ route('guru.index') }}" class="dashboard-card bg-success">
                 <i class="bi bi-people"></i><br>
                 Data Guru
             </a>
