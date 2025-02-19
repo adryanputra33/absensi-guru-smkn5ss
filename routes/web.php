@@ -18,8 +18,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('guru', GuruController::class)->except(['show', 'destroy']);
 
+    Route::put('/gurustatus/{id}', [GuruController::class, 'updatestatus'])->name('guru.updatestatus');
+
 
 });
 
 require __DIR__.'/auth.php';
+
+
 

@@ -27,22 +27,24 @@
 
                 <!-- Form hanya untuk status -->
                 <td>
-                    <form action="{{ route('guru.update', $item->id) }}" method="POST">
+                    <form action="{{ route('guru.updatestatus', $item->id) }}" method="POST">
                         @csrf
-                        @method('PUT') <!-- Menentukan method PUT untuk pembaruan -->
-                        <input type="hidden" name="status" value="0"> <!-- Set status 0 secara default -->
+                        @method('PUT')
 
-                        <!-- Checkbox untuk status, jika dicentang, status menjadi 1 -->
-                        <input type="checkbox" name="status" value="1" {{ $item->status == 1 ? 'checked' : '' }} onchange="this.form.submit()">
+                        <input type="checkbox" name="status"
+                               value="1"
+                               {{ $item->status == 1 ? 'checked' : '' }}
+                               onchange="console.log('Checkbox diubah, form akan dikirim!'); this.form.submit();">
+
                     </form>
                 </td>
 
                 <td>
-                    <a href="{{ route('guru.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                    <a href="{{ route('guru.edit', $item->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Edit">
                         <i class="fas fa-edit"></i> <!-- Icon Edit -->
                     </a>
 
-                    <a href="" class="btn btn-primary btn-sm">
+                    <a href="" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Akun">
                         <i class="fas fa-user"></i> <!-- Icon User -->
                     </a>
                 </td>
@@ -50,4 +52,6 @@
         @endforeach
         </tbody>
     </table>
+
+
 @endsection

@@ -94,4 +94,19 @@ class GuruController extends Controller
         }
     }
 
+    public function updatestatus(Request $request, $id)
+    {
+
+        // Ambil data guru berdasarkan ID
+        $guru = Guru::findOrFail($id);
+
+        // Jika status dikirimkan (dicentang), set ke 1, jika tidak, set ke 0
+        $guru->status = $request->has('status') ? 1 : 0;
+        $guru->save(); // Simpan perubahan
+
+        // Redirect kembali ke halaman data guru dengan pesan sukses
+        return redirect()->route('guru.index')->with('success', 'Status berhasil diperbarui');
+    }
+
+
 }
